@@ -27,7 +27,6 @@ public class C02_StringPool {
            eğer poll'da aynı değere sahip başka bir string varsa
            yeni obje ile eski objenin referansını ve değerini eşleştirir
 
-
          */
     }
 }
