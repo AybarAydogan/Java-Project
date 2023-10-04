@@ -22,6 +22,16 @@ public class C06_DateTimeFormatter {
         System.out.println(ldt.format(istenenFormat)); // 03 Eki 2023 Sal
 
 
+        // saati 10:58 AM şeklinde yazdıralım
+        DateTimeFormatter istenenSaatFormati1 = DateTimeFormatter.ofPattern("hh:mm a");
+        System.out.println(ldt.format(istenenSaatFormati1)); // 10:58 ÖÖ
+
+
+        // saati 10:55 24 saate göre
+        DateTimeFormatter isteneSaatFormati2 = DateTimeFormatter.ofPattern("h:mm");
+        System.out.println(ldt.format(isteneSaatFormati2)); // 11:00
+
+
         /*
          format olustururken
          GUN
