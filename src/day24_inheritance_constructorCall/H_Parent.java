@@ -8,6 +8,7 @@ public class H_Parent extends G_GrandParent{
     }
 
     H_Parent(String str){
+        this();
         System.out.println("P String");
 
     }
@@ -18,6 +19,7 @@ public class H_Parent extends G_GrandParent{
     }
 
    H_Parent(boolean bl){
+       super(false);
         System.out.println("P boolen");
 
     }
