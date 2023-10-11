@@ -51,8 +51,11 @@ public class D_Runner {
         System.out.println(kartal3.beslenme); // A Beslenirler
         System.out.println(kartal3.cogalma); // A cogalirlar
         System.out.println(kartal3.omur); // A Yaşar ve ölürler
-      // System.out.println(kartal3.kanat); // CTE
-       // System.out.println(kartal3.gaga); // CTE
-      // System.out.println(kartal3.pence); // CTE
+        // System.out.println(kartal3.kanat); // CTE
+        // System.out.println(kartal3.gaga); // CTE
+        // System.out.println(kartal3.pence); // CTE
+
+        B_Kuslar kus1 = new B_Kuslar();
+
     }
 }
