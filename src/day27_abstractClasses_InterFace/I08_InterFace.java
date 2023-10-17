@@ -22,6 +22,7 @@ public interface I08_InterFace {
     public void method2();
     abstract int method5();
     String method4();
+   // void yeniMerhod();
 
     public static void main(String[] args) {
 
