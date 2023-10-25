@@ -170,4 +170,116 @@ public class MapMethodDepo {
         }
 
     }
+
+    public static Map<Integer, String> numaraIleSoyisimUpdate(Map<Integer, String> ogrenciMap, int ogrenciNo, String yeniSoyisim) {
+
+        // önce istenen öğrenci numarasına ait value'u alalım
+        // Ali-Cem-11-K-TM
+
+        String ogrenciValue = ogrenciMap.get(ogrenciNo);
+
+        // split ile datayı manipule edilebilir hale getirelim
+        // [Ali, Cem, 11, K, TM]
+
+        String[] ogrenciValueArr = ogrenciValue.split("-");
+
+        // array'in 1.index'indeki soyismi yeniSoyisim olarak update edelim
+        // [Ali, Çelik, 11, K, TM]
+
+        ogrenciValueArr[1] = yeniSoyisim;
+
+        // array'deki elemanları, yeniden value formatina sokmamız lazım
+        // String olarak "li-Çelik-11-K-TM" elde ederiz
+
+        String yeniValue = ogrenciValueArr[0] + "-" +
+                ogrenciValueArr[1] + "-" +
+                ogrenciValueArr[2] + "-" +
+                ogrenciValueArr[3] + "-" +
+                ogrenciValueArr[4];
+
+        // elimizde key var (ogrenciNo), elimizde yeni value de var
+        ogrenciMap.put(ogrenciNo, yeniValue);
+
+
+        return ogrenciMap;
+    }
+
+    public static Map<Integer, String> subedekiOgrencileriTasi(Map<Integer, String> ogrenciMap, String eskisube, String yeniSube) {
+
+        // Hangi öğrenci numarasının şubesi değişecek bilmediğimden
+        // önce keySet() ile tüm key'leri alalım  // [ 101, 102, 103, 104, 105, 106, 107, 108, 109, 110]
+        Set<Integer> keySeti = ogrenciMap.keySet();
+
+        // for-each loop ile her key'e ait value'yu ele alalım
+        // Ali-Cem-11-K-TM
+        String[] valueArr;
+
+        for (Integer each : keySeti
+        ) {
+            // Value'daki bilgileri kullanabilmek için array'e çevirelim
+            // [Ali, Cem, 11, K, TM]
+            valueArr = ogrenciMap.get(each).split("-");
+
+            // array[3]'e bakıp istenen eskiSube değerine eşit ise
+            // yeni şube olarak update edelim  [Ali-Cem-11-C-TM]
+            if (valueArr[3].equalsIgnoreCase(eskisube)) {
+                valueArr[3] = yeniSube;
+            }
+
+
+            // map'i update edebilmek için
+            // array'i value formatına uygun String'e dönüştürelim
+            String yeniValue = valueArr[0] + "-" +
+                    valueArr[1] + "-" +
+                    valueArr[2] + "-" +
+                    valueArr[3] + "-" +
+                    valueArr[4];
+
+
+            // key ve yeni value'yu kullanarak
+            // Map'i update edelim
+            ogrenciMap.put(each, yeniValue);
+        }
+
+        return ogrenciMap;
+    }
+
+    public static Map<Integer, String> yilSonuSinifArtir(Map<Integer, String> ogrenciMap) {
+
+        Set<Integer> keySeti = ogrenciMap.keySet();
+        String[] valueArr;
+
+        for (Integer each : keySeti
+        ) {
+            valueArr = ogrenciMap.get(each).split("-");
+
+            // array'deki sınıf bilgisini 1 artırmam lazım
+            switch (valueArr[2]) {
+                case "9":
+                    valueArr[2] = "10";
+                    break;
+                case "10":
+                    valueArr[2] = "11";
+                    break;
+                case "11":
+                    valueArr[2] = "12";
+                    break;
+                case "12":
+                    valueArr[2] = "Mezun";
+                    break;
+                default:
+                    valueArr[2] = null;
+            }
+
+            String yeniValue = valueArr[0] + "-" +
+                    valueArr[1] + "-" +
+                    valueArr[2] + "-" +
+                    valueArr[3] + "-" +
+                    valueArr[4];
+
+            ogrenciMap.put(each,yeniValue);
+        }
+
+        return ogrenciMap;
+    }
 }
