@@ -293,15 +293,15 @@ public class MapMethodDepo {
         // sınıf ve şube bilgisi istenen değere eşit olanları yazdıralım
         String eachValue;
         String[] valueArr;
-        System.out.println("========" + sinif + "/" + sube+ "sınıf listesi========");
+        System.out.println("========" + sinif + "/" + sube + "sınıf listesi========");
 
-        for (Map.Entry<Integer,String> eachEntry : entrySeti ) {
+        for (Map.Entry<Integer, String> eachEntry : entrySeti) {
             // eachEntry ==> 110=Azim-Kayisi-11-K-TM
 
             eachValue = eachEntry.getValue();  // 110=Azim-Kayisi-11-K-TM
             valueArr = eachValue.split("-"); // [Ali, Cem, 11, C TM]
 
-            if (valueArr[2].equals(sinif) && valueArr[3].equalsIgnoreCase(sube)){
+            if (valueArr[2].equals(sinif) && valueArr[3].equalsIgnoreCase(sube)) {
 
                 System.out.println(eachEntry.getKey() + " " + valueArr[0] + " " + valueArr[1]);
             }
@@ -313,8 +313,7 @@ public class MapMethodDepo {
     public static Map<Integer, String> isimDuzenle(Map<Integer, String> ogrenciMapi) {
 
         // bir entrySeti oluşturalım
-        Set<Map.Entry<Integer,String>> entrySeti = ogrenciMapi.entrySet();
-
+        Set<Map.Entry<Integer, String>> entrySeti = ogrenciMapi.entrySet();
 
 
         String eachValue;
@@ -323,8 +322,8 @@ public class MapMethodDepo {
 
         // her bir entry'i ele almak için for-each kullanalım
 
-        for (Map.Entry<Integer,String> eachEntry: entrySeti
-             ) {
+        for (Map.Entry<Integer, String> eachEntry : entrySeti
+        ) {
             // her bir entry'deki value'yu alalım
             eachValue = eachEntry.getValue();
 
@@ -334,23 +333,47 @@ public class MapMethodDepo {
             // array[0] de bulunan isim bilgisini istenen formata getirelim
 
             isim = valueArr[0];
-            valueArr[0] = isim.substring(0,1).toUpperCase()+ isim.substring(1).toLowerCase();
+            valueArr[0] = isim.substring(0, 1).toUpperCase() + isim.substring(1).toLowerCase();
 
             // map'i update edebilmek için array'i string olarak birleştirelim
             String yeniValue = valueArr[0] + "-" +
-                               valueArr[1] + "-" +
-                               valueArr[2] + "-" +
-                               valueArr[3] + "-" +
-                               valueArr[4];
+                    valueArr[1] + "-" +
+                    valueArr[2] + "-" +
+                    valueArr[3] + "-" +
+                    valueArr[4];
 
             // setEntryValue() ile güncellenen value'yu update edelim
             eachEntry.setValue(yeniValue);
         }
 
 
-
-
-
         return ogrenciMapi;
+    }
+
+    public static Map<Integer, String> soyisimleriBuyukHarfYap(Map<Integer, String> ogrenciMap) {
+
+        Set<Map.Entry<Integer, String>> entrySeti = ogrenciMap.entrySet();
+
+        String eachValue;
+        String[] valueArr;
+
+        for (Map.Entry<Integer, String> eachEntry : entrySeti
+        ) {
+            eachValue = eachEntry.getValue();
+            valueArr = eachValue.split("-"); // [Ali, Cem, 11, C TM]
+
+            valueArr[1] = valueArr[1].toUpperCase();
+
+            String yeniValue = valueArr[0] + "-" +
+                    valueArr[1] + "-" +
+                    valueArr[2] + "-" +
+                    valueArr[3] + "-" +
+                    valueArr[4];
+
+            eachEntry.setValue(yeniValue);
+
+        }
+
+        return ogrenciMap;
     }
 }
