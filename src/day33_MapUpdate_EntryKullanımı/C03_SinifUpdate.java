@@ -7,7 +7,7 @@ import java.util.Map;
 public class C03_SinifUpdate {
     public static void main(String[] args) {
 
-        // yık sonunda .alıştırılmak üzere
+        // yıl sonunda alıştırılmak üzere
         // tüm ğrencileri bir üst sınıfa çıkartan method oluşturun
         // 12.sınıftaki öğrencilerin sınıf bilgisi olarak mezun yazın
 

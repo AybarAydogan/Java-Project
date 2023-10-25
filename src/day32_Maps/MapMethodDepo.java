@@ -277,9 +277,80 @@ public class MapMethodDepo {
                     valueArr[3] + "-" +
                     valueArr[4];
 
-            ogrenciMap.put(each,yeniValue);
+            ogrenciMap.put(each, yeniValue);
         }
 
         return ogrenciMap;
+    }
+
+    public static void sinifListesiYazdirma(Map<Integer, String> ogrenciMapi, String sinif, String sube) {
+
+        // numara, isim, soyisim
+
+        Set<Map.Entry<Integer, String>> entrySeti = ogrenciMapi.entrySet();
+
+        // entry'leri elden geçirip
+        // sınıf ve şube bilgisi istenen değere eşit olanları yazdıralım
+        String eachValue;
+        String[] valueArr;
+        System.out.println("========" + sinif + "/" + sube+ "sınıf listesi========");
+
+        for (Map.Entry<Integer,String> eachEntry : entrySeti ) {
+            // eachEntry ==> 110=Azim-Kayisi-11-K-TM
+
+            eachValue = eachEntry.getValue();  // 110=Azim-Kayisi-11-K-TM
+            valueArr = eachValue.split("-"); // [Ali, Cem, 11, C TM]
+
+            if (valueArr[2].equals(sinif) && valueArr[3].equalsIgnoreCase(sube)){
+
+                System.out.println(eachEntry.getKey() + " " + valueArr[0] + " " + valueArr[1]);
+            }
+
+
+        }
+    }
+
+    public static Map<Integer, String> isimDuzenle(Map<Integer, String> ogrenciMapi) {
+
+        // bir entrySeti oluşturalım
+        Set<Map.Entry<Integer,String>> entrySeti = ogrenciMapi.entrySet();
+
+
+
+        String eachValue;
+        String[] valueArr;
+        String isim;
+
+        // her bir entry'i ele almak için for-each kullanalım
+
+        for (Map.Entry<Integer,String> eachEntry: entrySeti
+             ) {
+            // her bir entry'deki value'yu alalım
+            eachValue = eachEntry.getValue();
+
+            // value'yu değiştirebilmek için array yapalım
+            valueArr = eachValue.split("-");
+
+            // array[0] de bulunan isim bilgisini istenen formata getirelim
+
+            isim = valueArr[0];
+            valueArr[0] = isim.substring(0,1).toUpperCase()+ isim.substring(1).toLowerCase();
+
+            // map'i update edebilmek için array'i string olarak birleştirelim
+            String yeniValue = valueArr[0] + "-" +
+                               valueArr[1] + "-" +
+                               valueArr[2] + "-" +
+                               valueArr[3] + "-" +
+                               valueArr[4];
+
+            // setEntryValue() ile güncellenen value'yu update edelim
+            eachEntry.setValue(yeniValue);
+        }
+
+
+
+
+
+        return ogrenciMapi;
     }
 }
